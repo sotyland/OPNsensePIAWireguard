@@ -3,6 +3,21 @@
 Current deployment is described in the full-migration section below. Earlier
 sections record intermediate states, not the final configuration.
 
+## Subsequent interface label cleanup
+
+The owner requested removal of the PIA prefix from visible interface labels and
+correction of Malta/Baltimore. The labels are now Sofia, London, NewJersey, Serbia,
+Slovakia, Romania, Portugal, Italy, Luxembourg and WashingtonDC. Internal instance,
+peer, gateway and alias names are unchanged. A private backup was saved at
+`/conf/purevpn/before-interface-labels.xml` before applying the guarded helper.
+Native PHP lint and dry-run validation passed. The complete configuration comparison
+showed only `interfaces` and revision metadata changed; within interfaces only
+descriptions changed. All ten handshakes remained healthy, and the rendered
+Assignments page showed all ten VPN interfaces up under the new labels. A repeat
+check reported zero label changes; the updated NAT mapping check reported zero
+additions. No tunnel restart, firewall rule change or new test suite was needed.
+The audit helper now reports label differences separately from other interface settings.
+
 Upstream baseline: a0b3dad1e45919c7d61b5dd2af2acac2c4ef91a4.
 
 - Local Python 3.11.9: 22 unittest cases pass using synthetic profiles and a

@@ -2,31 +2,31 @@
   {
     "assignment": "opt8",
     "alias": "WG_VPN_PIA_Slovakia_Hosts",
-    "description": "PIASlovakia"
+    "description": "Slovakia"
   },
   {
     "assignment": "opt9",
     "alias": "WG_VPN_PIA_Romania_Hosts",
-    "description": "PIARomania"
+    "description": "Romania"
   },
   {
     "assignment": "opt10",
     "alias": "WG_VPN_PIA_Portugal_Hosts",
-    "description": "PIAPortugal"
+    "description": "Portugal"
   },
   {
     "assignment": "opt11",
     "alias": "WG_VPN_PIA_Malta_Hosts",
-    "description": "PIAMalta"
+    "description": "Italy"
   },
   {
     "assignment": "opt12",
     "alias": "WG_VPN_PIA_Luxembourg_Hosts",
-    "description": "PIALuxembourg"
+    "description": "Luxembourg"
   },
   {
     "assignment": "opt13",
     "alias": "WG_VPN_PIA_Baltimor_Hosts",
-    "description": "PIABaltimore"
+    "description": "WashingtonDC"
   }
 ]

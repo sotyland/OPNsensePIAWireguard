@@ -7,21 +7,25 @@ paid extension was purchased. Activate profiles within the portal's displayed
 
 ## Location mapping
 
-| Existing interface | Device | PureVPN location |
+| Current interface | Device | PureVPN location |
 | --- | --- | --- |
-| PIASofia | wg1 | Sofia, Bulgaria |
-| PIALondon | wg2 | London, UK |
-| PIANewJersey | wg3 | Newark, USA |
-| PIASerbia | wg4 | Belgrade, Serbia |
-| PIASlovakia | wg5 | Bratislava, Slovakia |
-| PIARomania | wg6 | Bucharest, Romania |
-| PIAPortugal | wg7 | Lisbon, Portugal |
-| PIAMalta | wg8 | Rome, Italy — approved replacement |
-| PIALuxembourg | wg9 | Luxembourg |
-| PIABaltimore | wg10 | Washington DC, USA — approved replacement |
+| Sofia | wg1 | Sofia, Bulgaria |
+| London | wg2 | London, UK |
+| NewJersey | wg3 | Newark, USA |
+| Serbia | wg4 | Belgrade, Serbia |
+| Slovakia | wg5 | Bratislava, Slovakia |
+| Romania | wg6 | Bucharest, Romania |
+| Portugal | wg7 | Lisbon, Portugal |
+| Italy | wg8 | Rome, Italy — approved replacement |
+| Luxembourg | wg9 | Luxembourg |
+| WashingtonDC | wg10 | Washington DC, USA — approved replacement |
 
-Interface names, assignments, instance/peer UUIDs, listen ports and existing
-policy rules are retained. `managed.json` contains this router's public object
+At the owner's subsequent request, visible interface labels have had the PIA
+prefix removed. Malta and Baltimore were corrected to Italy and WashingtonDC.
+Assignments, instance/peer UUIDs, listen ports and existing policy rules are retained.
+Internal instance, peer, gateway and alias identifiers retain their original names.
+`RenameVPNInterfaces.php check|apply` performs this guarded, label-only change.
+`managed.json` contains this router's public object
 identifiers; adapt it to another router rather than copying it blindly.
 Each outbound NAT source is the corresponding `WG_VPN_PIA_*_Hosts` alias. The
 existing spelling `WG_VPN_PIA_Baltimor_Hosts` is intentional. Empty aliases send

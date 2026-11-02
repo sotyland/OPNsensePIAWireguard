@@ -18,6 +18,11 @@ def main():
     root = Path('/conf/purevpn')
     before = ET.parse(root / 'full-migration-before.xml').getroot()
     current = ET.parse('/conf/config.xml').getroot()
+    for old_interface in before.findall('./interfaces/*'):
+        new_interface = current.find('./interfaces/' + old_interface.tag)
+        if new_interface is not None and old_interface.findtext('descr') != new_interface.findtext('descr'):
+            print('LABEL', old_interface.tag, old_interface.findtext('descr'), '->', new_interface.findtext('descr'))
+            old_interface.find('descr').text = new_interface.findtext('descr')
     for path in ('interfaces', 'filter', 'nat', 'OPNsense/Firewall/Filter/rules'):
         print(path, 'UNCHANGED' if canonical(before.find(path)) == canonical(current.find(path)) else 'CHANGED')
     managed = json.loads((root / 'managed.json').read_text())

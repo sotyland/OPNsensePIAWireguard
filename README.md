@@ -1,10 +1,11 @@
 PureVPN WireGuard migration and recovery
 ===
 
-Ten existing tunnels have been migrated to PureVPN, retaining interface names,
-assignments and per-host policy rules. Each has outbound NAT restricted to its
-corresponding host alias. PIAMalta uses Rome and PIABaltimore uses Washington DC
-with the owner's approval. The owner confirmed a Serbian exit IP from a LAN client.
+Ten existing tunnels have been migrated to PureVPN, retaining assignments and
+per-host policy rules. Visible interface labels now omit the PIA prefix; Italy
+and WashingtonDC reflect the approved replacements for Malta and Baltimore.
+Each has outbound NAT restricted to its corresponding existing host alias.
+The owner confirmed a Serbian exit IP from a LAN client.
 
 `PureVPNMonitor.py` provides scheduled, scoped recovery using the existing profiles.
 It checks handshakes, leaves healthy tunnels alone and restarts only failed managed
