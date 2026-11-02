@@ -1,0 +1,62 @@
+[
+  {
+    "uuid": "abba45e6-f9df-41b1-80ab-862bd3d51063",
+    "name": "pia-sofia",
+    "interface": "wg1",
+    "peer_uuid": "a35f79c8-4a02-48e2-9995-86ff80ba91fd"
+  },
+  {
+    "uuid": "af14f71b-53c7-4691-80b7-4e5ac5355e4f",
+    "name": "pia-london",
+    "interface": "wg2",
+    "peer_uuid": "e8ceba1a-f423-4f46-97c3-62dac9b91ae2"
+  },
+  {
+    "uuid": "fdccdd8f-cf97-4d6f-bd80-8fc5fded05ac",
+    "name": "pia-newjersey",
+    "interface": "wg3",
+    "peer_uuid": "5c441197-23ca-441d-9b0c-bee010a4059f"
+  },
+  {
+    "uuid": "b11a351d-7c58-41a3-b300-f56c8101c130",
+    "name": "pia-slovakia",
+    "interface": "wg5",
+    "peer_uuid": "9238ab2d-7661-4237-a101-a30490c04512"
+  },
+  {
+    "uuid": "52557192-7042-465e-a0dc-1cba4fcd3124",
+    "name": "pia-romania",
+    "interface": "wg6",
+    "peer_uuid": "f0836527-26b0-473a-9326-cb8e08f1ecab"
+  },
+  {
+    "uuid": "9f1650f3-7e5c-4b62-9a18-6e5d01609fb0",
+    "name": "pia-portugal",
+    "interface": "wg7",
+    "peer_uuid": "e2e01991-619f-48c6-923a-98b74939549e"
+  },
+  {
+    "uuid": "5a66dc5b-9e5b-4523-b6b4-10f7eaff55de",
+    "name": "pia-malta",
+    "interface": "wg8",
+    "peer_uuid": "fa13bb07-546a-4d86-b453-56435b2598bb"
+  },
+  {
+    "uuid": "33345837-dbdd-4168-8fc6-2e20fdf63550",
+    "name": "pia-luxembourg",
+    "interface": "wg9",
+    "peer_uuid": "477d7642-854f-4556-a525-fc47bab2f396"
+  },
+  {
+    "uuid": "614858ee-82d8-47c4-9c2e-c88ab7c41600",
+    "name": "pia-baltimore",
+    "interface": "wg10",
+    "peer_uuid": "27d5e997-e13c-4f56-a9cf-7d0faefd9bd5"
+  },
+  {
+    "uuid": "ed401231-0b8c-4640-b418-53492e09ed14",
+    "name": "pia-serbia",
+    "interface": "wg4",
+    "peer_uuid": "9ac5590f-6135-4b8e-a07d-4e0fbd65810a"
+  }
+]

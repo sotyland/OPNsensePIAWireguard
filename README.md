@@ -1,24 +1,25 @@
-PureVPN adaptation — development build
+PureVPN WireGuard migration and recovery
 ===
 
-Start with [PUREVPN.md](PUREVPN.md). `PureVPNWireguard.py` imports a downloaded
-PureVPN profile into dedicated existing OPNsense objects. It defaults to
-read-only. `PureVPNProvider.py` adds experimental account login and profile
-generation, including the required login form headers. On the tested router,
-authentication advances but PureVPN's member portal returns a Cloudflare HTTP
-403 block. Unattended provisioning is therefore blocked; automatic reconnection,
-server rotation and port forwarding are not implemented. See
-[VERIFICATION.md](VERIFICATION.md) for tested behavior and remaining limitations.
+Ten existing tunnels have been migrated to PureVPN, retaining interface names,
+assignments and per-host policy rules. Each has outbound NAT restricted to its
+corresponding host alias. PIAMalta uses Rome and PIABaltimore uses Washington DC
+with the owner's approval. The owner confirmed a Serbian exit IP from a LAN client.
 
-An isolated live Sofia WireGuard test passed initial connection and reconnection
-after a 10-second disconnect using the same profile. `WireGuardHandshakeTest.py`
-reproduces this handshake-only check without installing IP addresses or routes.
-Long-outage recovery and LAN traffic routing remain unverified.
+`PureVPNMonitor.py` provides scheduled, scoped recovery using the existing profiles.
+It checks handshakes, leaves healthy tunnels alone and restarts only failed managed
+instances after two observations, with retry backoff. PIA's scheduled monitor is
+disabled. See [MANAGEMENT.md](MANAGEMENT.md) for deployment, persistence, controls
+and location mapping, and [VERIFICATION.md](VERIFICATION.md) for observed evidence.
 
-Live canary: the existing PIASerbia/opt7/wg4 was configured for PureVPN Belgrade
-with its names preserved. Connection and subsequent handshake renewal passed;
-the owner is handling the client traffic test. Existing firewall rules remain
-unchanged. See the dated evidence in VERIFICATION.md.
+Automatic profile regeneration remains blocked by the provider portal's HTTP 403
+response to router login. The monitor reconnects existing profiles; it cannot
+replace provider-revoked credentials. Long-outage recovery and an actual firmware
+upgrade/reboot have not been tested. Startup and update-hook restoration have been
+tested without rebooting the router. No paid add-on is used.
+
+[PUREVPN.md](PUREVPN.md) describes the separate API importer and experimental
+provider component. The native migration helpers are described in MANAGEMENT.md.
 
 The original PIA files and instructions below are retained for upstream
 history; do not run the PIA setup commands for PureVPN.

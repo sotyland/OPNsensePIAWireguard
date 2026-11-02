@@ -20,14 +20,18 @@ authentication advances with the corrected form headers, but the tested router
 receives a Cloudflare HTTP 403 block at the member-portal callback. Complete
 session establishment and generated profile usability remain unverified.
 
-Not implemented: scheduled renewal/reconnection, failover,
-port forwarding, automatic creation of instances/peers, gateway/NAT/firewall/DNS
-configuration, IPv6, MTU changes or a tunnel health monitor. DNS and MTU from
+The separate native monitor now provides scheduled reconnection with existing
+profiles; see [MANAGEMENT.md](MANAGEMENT.md). Native migration helpers also support
+reviewed gateway and alias-specific NAT changes. These are separate from this API importer.
+
+Not implemented: unattended profile renewal, failover,
+port forwarding, automatic creation of instances/peers, global DNS
+configuration, IPv6 or MTU changes. DNS and MTU from
 the profile require manual configuration. MTU directives are rejected until reviewed
 and removed from the import copy. DNS is intentionally excluded from instance
 settings to avoid changing the firewall's global resolver configuration.
-This is not equivalent to the PIA
-script's unattended recovery. Do not install its PIA cron actions for PureVPN.
+Do not install the PIA cron actions for PureVPN. Existing-profile recovery is
+available, but unattended provider provisioning is not yet working.
 
 ## Preparation on OPNsense
 
@@ -154,4 +158,5 @@ VPN or firewall evidence.
 - [OPNsense peer model](https://github.com/opnsense/core/blob/master/src/opnsense/mvc/app/models/OPNsense/Wireguard/Client.xml)
 - [OPNsense service controller](https://github.com/opnsense/core/blob/master/src/opnsense/mvc/app/controllers/OPNsense/Wireguard/Api/ServiceController.php)
 
-Reviewed 2026-11-02. Provider provisioning and live acceptance remain pending.
+Reviewed 2026-11-02. Provider provisioning remains blocked; native migration and
+recovery evidence is recorded in VERIFICATION.md.
