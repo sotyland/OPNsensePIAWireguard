@@ -33,8 +33,21 @@ Upstream baseline: a0b3dad1e45919c7d61b5dd2af2acac2c4ef91a4.
   access works. No challenge bypass or browser impersonation was attempted.
   Full provider session establishment and unattended provisioning remain blocked.
 
+- A fresh Sofia profile obtained through the member-area browser UI completed
+  an initial handshake (Unix timestamp `1793651061`) on temporary `wg99`.
+  After destroying the interface, waiting 10 seconds and recreating it with
+  the same profile, another handshake completed (`1793651074`). No profile
+  regeneration or paid add-on was used. This proves short-disconnect recovery
+  only, not recovery after the setup window or a long outage.
+- `WireGuardHandshakeTest.py` compiled locally and on OPNsense and received
+  independent cold review. It sets no interface addresses or OS routes.
+  Independent post-test checks confirmed `wg99` absent, the WAN default route
+  unchanged and the configuration checksum above unchanged. SIGKILL, power loss
+  or interruption during interface creation can still require manual cleanup.
+
 Not verified: live OPNsense API compatibility, complete provider login, PureVPN
-handshake/exit IP/DNS/kill switch, reconnect after provider expiry, real rollback
-or service stability. Only an inactive provider component has been installed;
+exit IP/DNS/kill switch, reconnect after provider expiry, real rollback
+or service stability. Only an inactive provider component and diagnostic probe
+have been installed;
 no network migration has occurred. Visual firewall validation and service
 stability checks remain pending. Automated reconnection is not built.

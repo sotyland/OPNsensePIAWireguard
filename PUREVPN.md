@@ -110,6 +110,30 @@ No paid add-on is required by this component. Provider challenges stop the run;
 the component does not bypass interactive verification. Run credential operations
 on OPNsense or another POSIX host; Windows is supported only for synthetic tests.
 
+## Isolated WireGuard reconnect probe
+
+`WireGuardHandshakeTest.py` is a FreeBSD/OPNsense diagnostic, not a scheduled
+reconnection manager. Put a fresh, dedicated test profile at
+`/conf/purevpn/sofia-test.conf` with root-only permissions, copy the script to
+`/conf/purevpn/`, then run:
+
+```sh
+/usr/local/bin/python3 /conf/purevpn/WireGuardHandshakeTest.py
+```
+
+Do not reuse credentials belonging to an active tunnel. The probe refuses an
+existing `wg99`, creates that temporary interface without IP addresses or OS
+routes, waits for a handshake, destroys it, and repeats after 10 seconds using
+the same profile. It removes the interface on normal completion and handled
+interruptions. Independently check `ifconfig -l` afterward; a forced process
+termination can leave the temporary interface behind.
+
+The live Sofia probe passed both phases on 2026-11-02. It does not verify routed
+traffic, DNS, the kill switch, long-outage recovery, or scheduled automation.
+PureVPN's Linux guide describes an initial activation window; it does not
+establish a requirement to regenerate a profile for every reconnect. Activate
+fresh profiles within the timer shown in the member portal.
+
 ## Local verification
 
 From this repository, in an isolated Python environment with requirements installed:
@@ -126,7 +150,7 @@ VPN or firewall evidence.
 
 ## Sources
 
-- [PureVPN manual setup](https://support.purevpn.com/en_US/purevpn-android/setup-wireguard-on-android)
+- [PureVPN WireGuard Linux setup](https://support.purevpn.com/en_US/linux/how-to-setup-wireguard-on-linux)
 - [OPNsense peer model](https://github.com/opnsense/core/blob/master/src/opnsense/mvc/app/models/OPNsense/Wireguard/Client.xml)
 - [OPNsense service controller](https://github.com/opnsense/core/blob/master/src/opnsense/mvc/app/controllers/OPNsense/Wireguard/Api/ServiceController.php)
 

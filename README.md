@@ -10,6 +10,11 @@ authentication advances but PureVPN's member portal returns a Cloudflare HTTP
 server rotation and port forwarding are not implemented. See
 [VERIFICATION.md](VERIFICATION.md) for tested behavior and remaining limitations.
 
+An isolated live Sofia WireGuard test passed initial connection and reconnection
+after a 10-second disconnect using the same profile. `WireGuardHandshakeTest.py`
+reproduces this handshake-only check without installing IP addresses or routes.
+Long-outage recovery and LAN traffic routing remain unverified.
+
 The original PIA files and instructions below are retained for upstream
 history; do not run the PIA setup commands for PureVPN.
 
