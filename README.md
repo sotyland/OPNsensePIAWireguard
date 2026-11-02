@@ -15,6 +15,11 @@ after a 10-second disconnect using the same profile. `WireGuardHandshakeTest.py`
 reproduces this handshake-only check without installing IP addresses or routes.
 Long-outage recovery and LAN traffic routing remain unverified.
 
+Live canary: the existing PIASerbia/opt7/wg4 was configured for PureVPN Belgrade
+with its names preserved. Connection and subsequent handshake renewal passed;
+the owner is handling the client traffic test. Existing firewall rules remain
+unchanged. See the dated evidence in VERIFICATION.md.
+
 The original PIA files and instructions below are retained for upstream
 history; do not run the PIA setup commands for PureVPN.
 

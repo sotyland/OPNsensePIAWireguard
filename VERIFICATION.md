@@ -45,9 +45,36 @@ Upstream baseline: a0b3dad1e45919c7d61b5dd2af2acac2c4ef91a4.
   unchanged and the configuration checksum above unchanged. SIGKILL, power loss
   or interruption during interface creation can still require manual cleanup.
 
-Not verified: live OPNsense API compatibility, complete provider login, PureVPN
-exit IP/DNS/kill switch, reconnect after provider expiry, real rollback
-or service stability. Only an inactive provider component and diagnostic probe
-have been installed;
-no network migration has occurred. Visual firewall validation and service
-stability checks remain pending. Automated reconnection is not built.
+## PIASerbia live canary
+
+At the owner's explicit request, the existing `PIASerbia` interface (`opt7`,
+`wg4`) was configured with a fresh PureVPN Belgrade WireGuard profile. Instance
+and peer names were retained, as was listen port 51818. The tunnel address is
+172.21.194.186/32; the existing named gateway uses 172.21.194.185, following
+OPNsense's arbitrary WireGuard gateway convention. Only Serbia was removed
+from the PIA manager's instance list; the other nine entries were preserved.
+
+The native template generator was run before restarting only the Serbia
+instance by UUID. A restart alone initially loaded the stale generated peer
+file; runtime endpoint inspection detected this and template generation fixed it.
+The running endpoint became 135.136.30.4:51820. Handshakes at Unix timestamps
+1793651709 and 1793651835 demonstrate connection and subsequent handshake renewal
+over more than two minutes. At 1793651874, received/sent counters were 184/552
+bytes. These small values establish control traffic, not a LAN throughput test.
+The interface remained UP/RUNNING and the WAN default route was preserved.
+
+A Serbia-only source NAT rule was briefly added before the owner specified
+that rules must remain untouched. That addition was removed and applied;
+the original filter and NAT XML sections match the pre-test backup exactly,
+and the new rule is absent. The owner will configure a machine and test their
+existing routing and rules. Do not alter firewall, NAT, aliases or routing
+further without a new explicit request.
+
+Private pre-test rollback copies of config.xml and PIAWireguard.json are under
+`/conf/purevpn/serbia-test-backup/` on the router. They are not repository files.
+Rollback of the full router configuration has not been exercised.
+
+Not verified: importer end-to-end API operation, complete unattended provider
+login, LAN exit IP/DNS/kill switch, or recovery after a long outage/provider
+expiry. Automatic reconnection management is not built. The owner is handling
+the client traffic test; only the Serbia tunnel is configured for this canary.
