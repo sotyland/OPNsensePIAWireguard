@@ -1,3 +1,14 @@
+PureVPN adaptation — development build
+===
+
+Start with [PUREVPN.md](PUREVPN.md). `PureVPNWireguard.py` imports a downloaded
+PureVPN profile into dedicated existing OPNsense objects. It defaults to
+read-only and does not implement PureVPN login, renewal, server rotation or
+port forwarding. Live OPNsense/PureVPN validation is pending.
+
+The original PIA files and instructions below are retained for upstream
+history; do not run the PIA setup commands for PureVPN.
+
 OPNsense PIA Wireguard Script
 ===
 This script automates the process of setting up a Wireguard Point-To-Point VPN tunnel on OPNsense to connect to PIA's NextGen Wireguard servers.

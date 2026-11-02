@@ -1,0 +1,10 @@
+{
+  "opnsenseURL": "https://opnsense.example.com",
+  "opnsenseKey": "REPLACE_LOCALLY",
+  "opnsenseSecret": "REPLACE_LOCALLY",
+  "caBundle": "/conf/purevpn/opnsense-ca.pem",
+  "serverUUID": "REPLACE_WITH_DEDICATED_INSTANCE_UUID",
+  "peerUUID": "REPLACE_WITH_DEDICATED_PEER_UUID",
+  "serverName": "purevpn",
+  "peerName": "purevpn-server"
+}
