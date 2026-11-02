@@ -13,7 +13,14 @@ checks, update readback, reconfigure only after changes, and healthy no-op repea
 Preserves object enabled state, local listening port, gateway and other unowned
 fields. Does not enable the WireGuard service.
 
-Not implemented: PureVPN account login/config generation/renewal, failover,
+Experimental separate component: `PureVPNProvider.py` implements normal HTTPS
+account login, location discovery and profile generation with stable client keys.
+It does not modify OPNsense, enable a tunnel or schedule renewal. Live account
+authentication advances with the corrected form headers, but the tested router
+receives a Cloudflare HTTP 403 block at the member-portal callback. Complete
+session establishment and generated profile usability remain unverified.
+
+Not implemented: scheduled renewal/reconnection, failover,
 port forwarding, automatic creation of instances/peers, gateway/NAT/firewall/DNS
 configuration, IPv6, MTU changes or a tunnel health monitor. DNS and MTU from
 the profile require manual configuration. MTU directives are rejected until reviewed
@@ -86,12 +93,29 @@ clients retain their intended connectivity. Observe at least 60 seconds of
 stability and test recovery after a long disconnect with the same profile.
 A successful API save or reconfigure is not proof of a healthy tunnel.
 
+## Experimental provider generation
+
+On OPNsense, after securely copying `PureVPNProvider.py` to `/conf/purevpn/`:
+
+```sh
+/usr/local/bin/python3 /conf/purevpn/PureVPNProvider.py --credentials /conf/purevpn/credentials.json --output /conf/purevpn/profiles --setup-login --all
+```
+
+Enter the account email and hidden password once. Credentials, client identities
+and profiles are stored as private files. Omit `--setup-login` on later runs to
+reuse the saved credentials. Omit `--all` to authenticate and save only the location
+catalogue. A run with `--all` requests fresh profiles for every returned city;
+it is a provisioning action, not a passive health check. Do not run concurrently.
+No paid add-on is required by this component. Provider challenges stop the run;
+the component does not bypass interactive verification. Run credential operations
+on OPNsense or another POSIX host; Windows is supported only for synthetic tests.
+
 ## Local verification
 
 From this repository, in an isolated Python environment with requirements installed:
 
 ```sh
-python -m unittest -v test_purevpn
+python -m unittest -v test_purevpn test_provider
 python PureVPNWireguard.py --help
 ```
 

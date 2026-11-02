@@ -3,8 +3,12 @@ PureVPN adaptation — development build
 
 Start with [PUREVPN.md](PUREVPN.md). `PureVPNWireguard.py` imports a downloaded
 PureVPN profile into dedicated existing OPNsense objects. It defaults to
-read-only and does not implement PureVPN login, renewal, server rotation or
-port forwarding. Live OPNsense/PureVPN validation is pending.
+read-only. `PureVPNProvider.py` adds experimental account login and profile
+generation, including the required login form headers. On the tested router,
+authentication advances but PureVPN's member portal returns a Cloudflare HTTP
+403 block. Unattended provisioning is therefore blocked; automatic reconnection,
+server rotation and port forwarding are not implemented. See
+[VERIFICATION.md](VERIFICATION.md) for tested behavior and remaining limitations.
 
 The original PIA files and instructions below are retained for upstream
 history; do not run the PIA setup commands for PureVPN.

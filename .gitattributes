@@ -1,2 +1,4 @@
 PureVPNWireguard.py text eol=lf
 test_purevpn.py text eol=lf
+PureVPNProvider.py text eol=lf
+test_provider.py text eol=lf

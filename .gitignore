@@ -5,3 +5,5 @@ PureVPNWireguard.json
 *.pem
 *.key
 *.pending
+private-profiles/
+private/
